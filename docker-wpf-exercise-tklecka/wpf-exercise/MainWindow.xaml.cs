@@ -31,14 +31,20 @@ namespace wpf_exercise
         {
             Cars.Clear();
             var resp = await HttpClient.GetAsync("cars");
-            JsonSerializer.Deserialize<List<Car>>(await resp.Content.ReadAsStringAsync()).ForEach(c => Cars.Add(c));
+            if (resp.IsSuccessStatusCode)
+            {
+                JsonSerializer.Deserialize<List<Car>>(await resp.Content.ReadAsStringAsync()).ForEach(c => Cars.Add(c));
+            }
         }
 
         public async void GetCarsForDay()
         {
             Cars.Clear();
             var resp = await HttpClient.GetAsync("reservations/date/" + Date.Day + "." + Date.Month + "." + Date.Year + "");
-            JsonSerializer.Deserialize<List<Car>>(await resp.Content.ReadAsStringAsync()).ForEach(c => Cars.Add(c));
+            if (resp.IsSuccessStatusCode)
+            {
+                JsonSerializer.Deserialize<List<Car>>(await resp.Content.ReadAsStringAsync()).ForEach(c => Cars.Add(c));
+            }
         }
 
         public async void ReservateCar(int carid)

@@ -1,1 +1,5 @@
 docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=!123ABC!' -p 1433:1433 -v D:\Projects\docker-wpf-exercise-tklecka\mssql:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2019-latest
+
+docker create --name dockerdb --network api-net -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=!123ABC!' -p 1433:1433 -v D:\Projects\docker-wpf-exercise-tklecka\mssql:/var/opt/mssql/data mcr.microsoft.com/mssql/server:2019-latest
+
+docker create --name dockerapi --network api-net --publish 500080 dockerapi:latest
