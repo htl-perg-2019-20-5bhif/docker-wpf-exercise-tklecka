@@ -48,6 +48,7 @@ namespace docker_wpf_exercise_tklecka.Controllers
         public async Task<ActionResult<IEnumerable<Car>>> GetReservation(string date)
         {
             DateTime datet = DateTime.Parse(date);
+            datet = new DateTime(datet.Year, datet.Month, datet.Day);
             var reservations = await _context.Reservations.Where(r => r.ReservationDay.Equals(datet)).ToListAsync();
             var cars = await _context.Cars.ToListAsync();
 
@@ -105,6 +106,7 @@ namespace docker_wpf_exercise_tklecka.Controllers
         [HttpPost]
         public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
         {
+            reservation.ReservationDay = new DateTime(reservation.ReservationDay.Year, reservation.ReservationDay.Month, reservation.ReservationDay.Day);
             var reservations = await _context.Reservations
                 .Where(r => r.ReservationDay
                 .Equals(reservation.ReservationDay))

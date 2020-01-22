@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using docker_wpf_exercise_tklecka.Data;
 
 namespace docker_wpf_exercise_tklecka.Migrations
 {
     [DbContext(typeof(CarDataContext))]
-    partial class CarDataContextModelSnapshot : ModelSnapshot
+    [Migration("20200110115435_delete_info")]
+    partial class delete_info
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
